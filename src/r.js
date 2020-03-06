@@ -1,2 +1,5 @@
-const a=1111
+
 console.log(a)
+
+const b=10
+const a=10
