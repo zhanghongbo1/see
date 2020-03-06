@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+//     let day='2020-03-09'
+//     let arr=[]
+//     for(var i=6;i>=0;i--){
+//       arr.push(getDate(new Date(day)/1000-3600*24*i))
+//     }
+//     // console.log(arr)
+//     function getDate(timestamp) {
+//         var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+//        var Y = date.getFullYear() + '-';
+//        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+//        var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) 
+     
+//         return Y+M+D
+//     }
+//     function getweek(data){
+//       if(data==getDate(Date.parse(new Date())/1000)){
+//         return "今天"
+//       }else{
+//         let d =new Date(data).getDay();
+//       let week=new Array(7)
+//       week[0]="星期日"
+//       week[1]="星期一"
+//       week[2]="星期二"
+//       week[3]="星期三"
+//       week[4]="星期四"
+//       week[5]="星期五"
+//       week[6]="星期六"
+//       return week[d]
+//       }
+      
+//     }
+//   //   let qiandao=[{data:"2020-03-03"},{data:"2020-03-04"},{data:"2020-03-08"},{data:'2020-03-01'}]
+//   // const newarr=   qiandao.map(item=>{
+//   //     return arr.indexOf(item.data)
+//   //   }).filter(item=>{return item>=0})
+ 
+//   const dateOfToday = Date.now()
+// const dayOfToday = (new Date().getDay() + 7 - 1) % 7
+// const daysOfThisWeek = Array.from(new Array(7))
+//   .map((_, i) => {
+//     const date = new Date(dateOfToday + (i - dayOfToday) * 1000 * 60 * 60 * 24)
+//     return date.getFullYear() +
+//       '-' +
+//       String(date.getMonth() + 1).padStart(2, '0') +
+//       '-' +
+//       String(date.getDate()).padStart(2, '0')
+//   })
+//   const arr1= daysOfThisWeek.map(item=>{
+//      return getweek(item)
+//   })
+//   // console.log(getweek("2020-03-09"))
+//   const index=daysOfThisWeek
+//    console.log(daysOfThisWeek)
+//   console.log(arr1)
+function getWeekDay(dateString) {
+    let dateStringReg = /^\d{4}[/-]\d{1,2}[/-]\d{1,2}$/;
+
+    if (dateString.match(dateStringReg)) {
+        let presentDate = new Date(dateString),
+            today = presentDate.getDay() !== 0 ? presentDate.getDay() : 7;
+
+        return Array.from(new Array(7), function(val, index) {
+            return formatDate(new Date(presentDate.getTime() - (today - index-1) * 24 * 60 * 60 * 1000));
+        });
+
+    } else {
+        throw new Error('dateString should be like "yyyy-mm-dd" or "yyyy/mm/dd"');
+    }
+
+    function formatDate(date) {
+      //  console.log(date.getMonth() + 1)
+
+        return date.getFullYear() + '-' + (date.getMonth() + 1>=10?date.getMonth() + 1:"0"+(date.getMonth() + 1)) + '-' + (date.getDate()>=10?date.getDate():'0'+date.getDate());
+    }
+}
+
+console.log(getWeekDay('2020-03-08'));
+  </script>
+</html>
