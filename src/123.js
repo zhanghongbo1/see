@@ -1,1 +1,1 @@
-const b=0;
+const b=0;嘿嘿嘿
